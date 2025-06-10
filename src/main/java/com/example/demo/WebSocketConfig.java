@@ -18,6 +18,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/gs-guide-websocket");
+        // Add CORS configuration for React Native
+        registry.addEndpoint("/gs-guide-websocket")
+                .setAllowedOriginPatterns("*");
     }
 }
