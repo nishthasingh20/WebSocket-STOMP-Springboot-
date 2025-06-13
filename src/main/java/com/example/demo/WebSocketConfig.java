@@ -21,5 +21,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         // Add CORS configuration for React Native
         registry.addEndpoint("/gs-guide-websocket")
                 .setAllowedOriginPatterns("*");
+
+        // Also add SockJS fallback options
+        registry.addEndpoint("/gs-guide-websocket")
+                .setAllowedOriginPatterns("*")
+                .withSockJS();
     }
 }
