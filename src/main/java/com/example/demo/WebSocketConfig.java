@@ -3,6 +3,7 @@ package com.example.demo;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
@@ -19,12 +20,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // Add CORS configuration for React Native
-        registry.addEndpoint("/gs-guide-websocket")
-                .setAllowedOriginPatterns("*");
+        //registry.addEndpoint("/ws")
+                //.setAllowedOriginPatterns("*");
 
         // Also add SockJS fallback options
-        registry.addEndpoint("/gs-guide-websocket")
+        registry.addEndpoint("/ws")
                 .setAllowedOriginPatterns("*")
+                .setHandshakeHandler(new DefaultHandshakeHandler())
                 .withSockJS();
     }
 }
